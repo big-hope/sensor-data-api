@@ -56,7 +56,7 @@ class SensorDataAPITests(TestCase):
 
     def test_create_data_with_exist_serial_number(self):
         """Test post data."""
-        # device = create_device()
+        device = create_device()
 
         # payload = {
         #     "serial": device.serial_number,
@@ -82,10 +82,9 @@ class SensorDataAPITests(TestCase):
         #     "v18": "2.72",
         #     "Time": "2022-11-08 4:00:04"
         # }
-        EXAMPLE_DATA["message"]["data"] = "ewoJInNlcmlhbCI6I \
-        CIxMDAwMDAxMDAiLAoJ \
-        InYwIjogMTAwMDEzLAoJInYxOCI6IDIuNzIsC \
-        gkiVGltZSI6ICIyMDIyLTExLTA4IDQ6MDA6MDQiCn0="
+        EXAMPLE_DATA["message"]["data"] = "ewoJInNlcmlhbCI6ICIyMDAwMDAxMDA \
+        iLAoJInYwIjogMTAwMDEzLAoJInYxOCI6IDIuNzIsCgkiVGltZSI6ICIyMDIyLTE \
+        xLTA4IDQ6MDA6MDQiCn0="
 
         res = self.client.post(SENSOR_DATA_URL, EXAMPLE_DATA, format='json')
         self.assertEqual(res.status_code, status.HTTP_400_BAD_REQUEST)
