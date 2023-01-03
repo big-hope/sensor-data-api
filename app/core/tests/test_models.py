@@ -24,7 +24,17 @@ class ModelTests(TestCase):
         """Test creating a Device is successful."""
 
         device = models.Device.objects.create(
-            serial_number='1'
+            serial_number='000000001'
         )
 
         self.assertEqual(str(device), device.serial_number)
+
+    def test_create_data(self):
+        """Test creating a Device data."""
+
+        data = models.SensorData.objects.create(
+            v0='100013',
+            v18='2.72',
+            Time='2022-11-08 4:00:04'
+        )
+        self.assertEqual(str(data), data.v0)
