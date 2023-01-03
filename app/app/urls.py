@@ -15,7 +15,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from SensorData.views import SensorDataAPI
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('sensor-data/', SensorDataAPI.as_view(), name='sensor-data')
 ]
