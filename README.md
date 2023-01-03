@@ -2,5 +2,5 @@
  api for sensor data
 
 # Usage
-docker-compose build .
+docker-compose build . \ 
 docker-compose up
