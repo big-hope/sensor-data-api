@@ -2,7 +2,7 @@ from SensorData.serializers import DataSerializer
 from rest_framework import status, serializers
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from core.models import Device
+from core.models import Device, SensorData
 
 
 from core.services.preparing import prepare_data
@@ -10,9 +10,10 @@ from core.services.preparing import prepare_data
 
 class SensorDataAPI(APIView):
     """
-    Post sensors data.
+    Sensor Data.
     """
     def post(self, request):
+        """ Post data."""
         try:
             data = prepare_data(request)
         except Exception:
@@ -32,3 +33,9 @@ class SensorDataAPI(APIView):
         else:
             return Response(serializer.errors,
                             status=status.HTTP_400_BAD_REQUEST)
+
+    def get(self, request):
+        """Get data."""
+        sensordata = SensorData.objects.all()
+        serializer = DataSerializer(sensordata, many=True)
+        return Response(serializer.data)

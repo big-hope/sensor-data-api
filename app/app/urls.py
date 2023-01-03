@@ -17,7 +17,18 @@ from django.contrib import admin
 from django.urls import path
 from SensorData.views import SensorDataAPI
 
+from drf_spectacular.views import (
+    SpectacularAPIView,
+    SpectacularSwaggerView,
+)
+
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('sensor-data/', SensorDataAPI.as_view(), name='sensor-data')
+    path('sensor-data/', SensorDataAPI.as_view(), name='sensor-data'),
+    path('api/schema/', SpectacularAPIView.as_view(), name='api-schema'),
+    path(
+        '',
+        SpectacularSwaggerView.as_view(url_name='api-schema'),
+        name='api-docs'
+        ),
 ]

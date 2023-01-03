@@ -93,3 +93,9 @@ class SensorDataAPITests(TestCase):
 
         res = self.client.post(SENSOR_DATA_URL, EXAMPLE_DATA, format='json')
         self.assertEqual(res.status_code, status.HTTP_400_BAD_REQUEST)
+
+    def test_get_data(self):
+        """Test get data."""
+        res = self.client.get(SENSOR_DATA_URL)
+
+        self.assertEqual(res.status_code, status.HTTP_200_OK)
